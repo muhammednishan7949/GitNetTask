@@ -37,7 +37,7 @@ namespace WindowsFormsApplication_15
             {
                 try   // if the function does not exist at any point 
                 {
-                    y = 1/Math.Sin(x);   // Function formula!!!
+                    y = 1 / Math.Sin(x);   // Function formula!!!
                     xe = (int)(xc + m * x);
                     ye = (int)(yc - m * y);
                     G.DrawEllipse(myPen, xe, ye, 1, 1);
@@ -74,6 +74,48 @@ namespace WindowsFormsApplication_15
                     G.DrawEllipse(myPen, xe, ye, 1, 1);
                 }
                 catch { }
+                x += step;
+            }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        // ===== NEW BUTTON FUNCTION (for homework) =====
+        private void btnMyFunction_Click(object sender, EventArgs e)
+        {
+            double m = 30;
+            int xc = pictureBox1.Width / 2;
+            int yc = pictureBox1.Height / 2;
+
+            Graphics G = pictureBox1.CreateGraphics();
+            G.Clear(Color.White);
+
+            Pen axisPen = new Pen(Color.Silver);
+            G.DrawLine(axisPen, 10, yc, 2 * xc - 10, yc);
+            G.DrawLine(axisPen, xc, 10, xc, 2 * yc - 10);
+
+            Pen myPen = new Pen(Color.Red);
+
+            // NEW GRAPHIC FUNCTION (different from teacher examples)
+            double x = -Math.PI;
+            double step = 0.005;
+
+            while (x < Math.PI)
+            {
+                try
+                {
+                    double y = Math.Cos(x); // ✅ changed graphic function
+
+                    int xe = (int)(xc + m * x);
+                    int ye = (int)(yc - m * y);
+
+                    G.DrawEllipse(myPen, xe, ye, 1, 1);
+                }
+                catch { }
+
                 x += step;
             }
         }
